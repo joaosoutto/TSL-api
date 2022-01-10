@@ -18,4 +18,12 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     authentication_classes = [authentication.TokenAuthentication]
-
+    
+class UserPosts(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    authentication_classes = [authentication.TokenAuthentication]
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Post.objects.filter(owner=user)
