@@ -69,3 +69,9 @@ python manage.py runserver
 ```
 
 Note that the project is running in port 8000.
+
+### To run tests:
+
+```bash
+python manage.py test
+```
